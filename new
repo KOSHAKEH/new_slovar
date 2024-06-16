@@ -1,0 +1,39 @@
+#include <iostream>
+#include <map>
+using namespace std;
+
+int main() {
+    setlocale(LC_ALL, "Russian");
+
+    map<string, int> m1 = {
+        {"a", 100},
+        {"b", 200},
+        {"c", 300}
+    };
+    map<string, int> m2 = {
+        {"a", 300},
+        {"b", 200},
+        {"d", 400}
+    };
+
+    map<string, int> result;
+
+    for (const auto& pair : m1) {
+        result[pair.first] = pair.second;
+    }
+
+    for (const auto& pair : m2) {
+        if (result.count(pair.first)) {
+            result[pair.first] += pair.second;
+        }
+        else {
+            result[pair.first] = pair.second;
+        }
+    }
+
+    cout << "Новый словарь:" << endl;
+    for (const auto& pair : result) {
+        cout << pair.first << ": " << pair.second << endl;
+    }
+    return 0;
+}
